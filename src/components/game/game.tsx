@@ -1,18 +1,17 @@
-import { Component } from "react";
-import { GameState, Player } from "../../models/game";
-import { computeStatus, isDraw, isWinner } from "../../utils/game.utils";
-import { Board } from "../board/board";
-import './game.css'
+import { Component } from 'react';
+import { GameState, Symbol } from '../../models/game.models';
+import { computeStatus, isDraw, isWinner } from '../../utils/game.utils';
+import { Board } from '../Board/board';
+import './game.css';
 
 export class Game extends Component<{}, GameState> {
   private initialState = {
-    squares: Array(9).fill(null) as Player[],
-    currentSquareValue: 'X' as Player,
+    squares: Array(9).fill(null) as Symbol[],
+    currentSquareValue: 'X' as Symbol,
     gameOver: false,
-    winner: undefined,
   };
 
-  constructor(props: GameState) {
+  constructor(props: {}) {
     super(props);
     this.state = { ...this.initialState };
   }
@@ -24,6 +23,7 @@ export class Game extends Component<{}, GameState> {
         <div className='game-board'>
           <Board
             squares={this.state.squares}
+            winner={this.state.winner}
             onClick={(i) => this.handleClickOnSquare(i)}
           />
         </div>
@@ -43,7 +43,7 @@ export class Game extends Component<{}, GameState> {
     if (squares[i] || this.state.gameOver) {
       return;
     }
-    squares[i] = this.state.currentSquareValue.slice() as Player;
+    squares[i] = this.state.currentSquareValue.slice() as Symbol;
     const win = isWinner(squares[i], squares);
     const draw = isDraw(squares);
     this.setState({

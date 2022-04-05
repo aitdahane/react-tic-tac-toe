@@ -1,22 +1,25 @@
-import { GameState, Player } from '../models/game';
+import { GameState, Symbol, WINNING_LINES } from '../models/game.models';
 
-export const isWinner = (squareValue: Player, squares: Player[]): boolean => {
-  const winningLines = [
-    [0, 1, 2],
-    [0, 3, 6],
-    [0, 4, 8],
-    [1, 4, 7],
-    [2, 5, 8],
-    [2, 4, 6],
-    [3, 4, 5],
-    [6, 7, 8],
-  ];
-  return winningLines.some((winningLine) =>
-    winningLine.every((i) => squareValue === squares[i])
+export const isWinner = (squareValue: Symbol, squares: Symbol[]): boolean => {
+  return WINNING_LINES.some((winningLine) =>
+    winningLine.value.every((i) => squareValue === squares[i])
   );
 };
 
-export const isDraw = (squares: Player[]) => {
+export const findWinningLine = (
+  squareValue: Symbol,
+  squares: Symbol[]
+): any => {
+  if (!squares?.length) {
+    return null;
+  }
+  console.log(WINNING_LINES);
+  return WINNING_LINES.find((winningLine) =>
+    winningLine.value.every((i) => squareValue === squares[i])
+  );
+};
+
+export const isDraw = (squares: Symbol[]) => {
   return squares.every((i) => !!i);
 };
 

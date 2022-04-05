@@ -1,5 +1,14 @@
+.board {
+  position: relative;
+}
+
 .board-row:after {
   clear: both;
   content: '';
   display: table;
+}
+
+.board-winningLine {
+  position: absolute;
+  top: 0;
 }
