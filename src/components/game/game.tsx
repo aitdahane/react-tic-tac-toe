@@ -5,10 +5,11 @@ import { Board } from '../Board/board';
 import './game.css';
 
 export class Game extends Component<{}, GameState> {
-  private initialState = {
+  private initialState: GameState = {
     squares: Array(9).fill(null) as Symbol[],
     currentSquareValue: 'X' as Symbol,
     gameOver: false,
+    winner: null,
   };
 
   constructor(props: {}) {

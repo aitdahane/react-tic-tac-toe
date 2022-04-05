@@ -10,10 +10,9 @@ export const findWinningLine = (
   squareValue: Symbol,
   squares: Symbol[]
 ): any => {
-  if (!squares?.length) {
+  if (!squares?.length || !squareValue) {
     return null;
   }
-  console.log(WINNING_LINES);
   return WINNING_LINES.find((winningLine) =>
     winningLine.value.every((i) => squareValue === squares[i])
   );
