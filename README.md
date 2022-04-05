@@ -1,5 +1,5 @@
 # Tic Tac Toe
-It is a basic tic tac toe build using React library
+Tic tac toe game built using React library
 
 ## Demo
 
